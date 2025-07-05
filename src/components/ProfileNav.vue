@@ -9,20 +9,30 @@
             <ul class="flex flex-col gap-2">
                 <li>
                     <RouterLink to="profile">
-                        <DefaultButton class="hover:text-gray-600 flex items-center gap-1">
+                        <DefaultButton @click="$emit('clickButton')" class="hover:text-blue-600 flex items-center gap-1">
                             <img src="@/images/ProfileIcon.svg" alt="Profile Icon" class="w-8 h-6">
                             <span>Profile</span>
                         </DefaultButton>
                     </RouterLink>
                 </li>
                 <li>
-                    <DefaultButton class="hover:text-gray-600 flex items-center gap-1">
-                        <img src="@/images/HelpIcon.svg" alt="Help Icon" class="w-8 h-6">
-                        <span>Help</span>
-                    </DefaultButton>
+                    <RouterLink to="account">
+                        <DefaultButton @click="$emit('clickButton')" class="hover:text-blue-600 flex items-center gap-1">
+                            <img src="@/images/Options.svg" alt="Options Icon" class="w-8 h-6">
+                            <span>Account</span>
+                        </DefaultButton>
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="help">
+                        <DefaultButton @click="$emit('clickButton')" class="hover:text-blue-600 flex items-center gap-1">
+                            <img src="@/images/HelpIcon.svg" alt="Help Icon" class="w-8 h-6">
+                            <span>Help</span>
+                        </DefaultButton>
+                    </RouterLink>
                 </li>
             </ul>
-            <DefaultButton class="text-red-500 hover:text-red-400">
+            <DefaultButton @click="$emit('clickButton')" class="text-red-500 hover:text-red-400">
                 Logout
             </DefaultButton>
         </div>
