@@ -1,6 +1,6 @@
 <script setup>
     import ProfileNav from './ProfileNav.vue';
-    import DefaultButton from './DefaultButton.vue';
+    import DefaultButton from './small/DefaultButton.vue';
     import { ref } from 'vue';
 
     let showProfileOpt = ref(false);
@@ -9,11 +9,13 @@
 
 <template>
     <div class="flex justify-between text-xl mt-4 text-black w-full">
-        <DefaultButton
-            @click="changeRoute"
-            class="text-2xl">
-            Tasko
-        </DefaultButton>
+        <RouterLink to="home">
+            <DefaultButton
+                @click="changeRoute"
+                class="text-2xl">
+                Tasko
+            </DefaultButton>
+        </RouterLink>
         <div class="relative">
         <DefaultButton
             @click="toggleDropdown"

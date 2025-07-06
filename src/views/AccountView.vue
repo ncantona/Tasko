@@ -1,8 +1,8 @@
 <script setup>
     import ChangeEmail from '@/components/ChangeEmail.vue';
     import ChangePassword from '@/components/ChangePassword.vue';
-    import CustomHeader from '@/components/CustomHeader.vue';
-    import DefaultButton from '@/components/DefaultButton.vue';
+    import CustomHeader from '@/components/small/CustomHeader.vue';
+    import DefaultButton from '@/components/small/DefaultButton.vue';
     import { ref } from 'vue';
     
     const activeSection = ref('password');

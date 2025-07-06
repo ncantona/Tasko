@@ -1,8 +1,8 @@
 <script setup>
     import { ref } from 'vue';
-    import DefaultButton from '@/components/DefaultButton.vue';
+    import DefaultButton from '@/components/small/DefaultButton.vue';
     import { RouterLink } from 'vue-router';
-    import CustomHeader from '@/components/CustomHeader.vue';
+    import CustomHeader from '@/components/small/CustomHeader.vue';
 
     let pictureExists = ref(false);
 </script>
@@ -43,7 +43,7 @@
                 </ul>
             </div>
         </div>
-        <div class="flex flex-row justify-center gap-5 items-cente mt-10">
+        <div class="flex flex-row justify-center gap-5 items-center mt-10">
             <RouterLink to="profile">
                 <DefaultButton class="text-blue-600 hover:text-blue-500"
                     @click="changeRoute">
