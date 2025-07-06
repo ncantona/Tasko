@@ -1,4 +1,5 @@
 <script setup>
+    const model = defineModel();
     const props = defineProps({
         label: String,
         name: String,
@@ -17,6 +18,7 @@
             :id="name"
             :name="name"
             class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500"
+            v-model="model"
         />
     </div>
 </template>

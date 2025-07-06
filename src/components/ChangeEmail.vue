@@ -1,17 +1,38 @@
 <script setup>
     import CustomInputText from './small/CustomInputText.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
+    import { ref } from 'vue';
+
+    const email = ref('');
+    const password = ref('');
+
+    const handleSubmit = () => {
+        console.log(email.value);
+        console.log(password.value);
+        email.value = '';
+        password.value = '';
+    }
 </script>
 
 <template>
     <div class="border-1 rounded-xl md:border-none p-4">
         <div class="flex flex-col md:flex-row justify-center gap-10">
-            <form class="flex flex-col justify-center items-center gap-5">
+            <form @submit.prevent="handleSubmit" class="flex flex-col justify-center items-center gap-5">
                 <div class="flex flex-col md:flex-row gap-5 w-full">
-                    <CustomInputText type="email" label="New Email*" name="newEmail"/>
-                    <CustomInputText type="password" label="Confirm Your Password*" name="password"/>
+                    <CustomInputText
+                        v-model="email"
+                        type="email"
+                        label="New Email*"
+                        name="newEmail"
+                    />
+                    <CustomInputText
+                        v-model="password"
+                        type="password"
+                        label="Confirm Your Password*"
+                        name="password"
+                    />
                 </div>
-                <CustomButtonSubmit @submit="sendBackEnd">Change Email</CustomButtonSubmit>
+                <CustomButtonSubmit>Change Email</CustomButtonSubmit>
             </form>
         </div>
     </div>

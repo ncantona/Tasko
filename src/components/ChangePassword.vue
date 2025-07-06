@@ -1,18 +1,47 @@
 <script setup>
     import CustomInputText from './small/CustomInputText.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
+    import { ref } from 'vue';
+
+    const currentPassword = ref('');
+    const newPassword = ref('');
+    const retypePassword = ref('');
+
+    const handleSubmit = () => {
+        console.log('Current Password:', currentPassword.value);
+        console.log('New Password:', newPassword.value);
+        console.log('Retype Password:', retypePassword.value);
+        currentPassword.value = '';
+        newPassword.value = '';
+        retypePassword.value = '';
+    }
 </script>
 
 <template>
     <div class="border-1 rounded-xl md:border-none p-4">
         <div class="flex flex-col md:flex-row justify-center gap-10">
-            <form class="flex flex-col justify-center items-center gap-5">
+            <form @submit.prevent="handleSubmit" class="flex flex-col justify-center items-center gap-5">
                 <div class="flex flex-col md:flex-row gap-5 w-full">
-                    <CustomInputText type="password" label="Current Password*" name="currentPassword"/>
-                    <CustomInputText type="password" label="New Password*" name="newPassword"/>
-                    <CustomInputText type="password" label="Retype Password*" name="retypePassword"/>
+                    <CustomInputText
+                        v-model="currentPassword"
+                        type="password"
+                        label="Current Password*"
+                        name="currentPassword"
+                    />
+                    <CustomInputText
+                        v-model="newPassword"
+                        type="password"
+                        label="New Password*"
+                        name="newPassword"
+                    />
+                    <CustomInputText
+                        v-model="retypePassword"
+                        type="password"
+                        label="Retype Password*"
+                        name="retypePassword"
+                    />
                 </div>
-                <CustomButtonSubmit @submit="sendBackEnd">Change Password</CustomButtonSubmit>
+                <CustomButtonSubmit>Change Password</CustomButtonSubmit>
             </form>
         </div>
     </div>
