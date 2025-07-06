@@ -28,16 +28,16 @@
                 <ul>
                     <li class="flex flex-col gap-2 mb-3">
                         <label for="username">Username*</label>
-                        <input type="text" id="username" name="username" class="border-1 rounded-sm outline-none p-2 w-full">
+                        <input type="text" id="username" name="username" class="border-1 rounded-sm outline-none p-2 w-full focus-within:border-2 focus-within:border-blue-500">
                     </li>
                     <div class="flex flex-col md:flex-row md:gap-5">
                         <li class="flex flex-col gap-2 mb-3">
                             <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" class="border-1 rounded-sm outline-none p-2">
+                            <input type="text" id="firstName" name="firstName" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                         </li>
                         <li class="flex flex-col gap-2 mb-3">
                             <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" class="border-1 rounded-sm outline-none p-2">
+                            <input type="text" id="lastName" name="lastName" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                         </li>
                     </div>
                 </ul>

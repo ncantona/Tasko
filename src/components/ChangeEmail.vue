@@ -4,17 +4,16 @@
 
 <template>
     <div class="border-1 rounded-xl md:border-none p-4">
-        <span class="text-2xl font-bold mb-5 flex justify-center">Email</span>
         <div class="flex flex-col md:flex-row justify-center gap-10">
             <div>
                 <ul class="flex flex-col md:flex-row md:gap-5">
                     <li class="flex flex-col gap-2 mb-3">
                         <label for="newEmail">New Email*</label>
-                        <input type="text" id="newEmail" name="newEmail" class="border-1 rounded-sm outline-none p-2">
+                        <input type="text" id="newEmail" name="newEmail" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                     </li>
                     <li class="flex flex-col gap-2 mb-3">
                         <label for="confirmPassword">Confirm Your Password*</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="border-1 rounded-sm outline-none p-2">
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                     </li>
                 </ul>
             </div>

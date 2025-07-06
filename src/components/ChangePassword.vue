@@ -4,21 +4,20 @@
 
 <template>
     <div class="border-1 rounded-xl md:border-none p-4">
-        <span class="text-2xl font-bold mb-5 flex justify-center">Password</span>
         <div class="flex flex-col md:flex-row justify-center gap-10">
             <div>
                 <ul class="flex flex-col md:flex-row md:gap-5">
                     <li class="flex flex-col gap-2 mb-3">
                         <label for="currentPassword">Current Password*</label>
-                        <input type="password" id="currentPassword" name="currentPassword" class="border-1 rounded-sm outline-none p-2">
+                        <input type="password" id="currentPassword" name="currentPassword" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                     </li>
                     <li class="flex flex-col gap-2 mb-3">
                         <label for="newPassword">New Password*</label>
-                        <input type="password" id="newPassword" name="newPassword" class="border-1 rounded-sm outline-none p-2">
+                        <input type="password" id="newPassword" name="newPassword" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                     </li>
                     <li class="flex flex-col gap-2 mb-3">
                         <label for="retypePassword">Retype Password*</label>
-                        <input type="password" id="retypePassword" name="retypePassword" class="border-1 rounded-sm outline-none p-2">
+                        <input type="password" id="retypePassword" name="retypePassword" class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
                     </li>
                 </ul>
             </div>
