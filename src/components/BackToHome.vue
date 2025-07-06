@@ -1,6 +1,5 @@
 <script setup>
     import DefaultButton from './small/DefaultButton.vue';
-
 </script>
 
 <template>

@@ -1,0 +1,35 @@
+<script setup>
+    import DefaultButton from './small/DefaultButton.vue';
+    import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
+    import CustomInputText from './small/CustomInputText.vue';
+</script>
+
+<template>
+    <div class="flex flex-col justify-center gap-3 w-5/6 max-w-100">
+        <span class="text-3xl font-bold self-center">Reset Password</span>
+        <form @submit.prevent="handleSubmit" class="flex flex-col gap-5 border-1 rounded-lg p-5">
+            <CustomInputText
+                v-model="email"
+                type="email"
+                label="Email*"
+                name="email"
+                />
+            <div class="flex justify-between pl-3 pr-3">
+                <DefaultButton
+                    @click="$emit('loginClick')"
+                    type="button"
+                    class="text-blue-600 hover:text-blue-500">
+                    Back to Login
+                </DefaultButton>
+                <RouterLink to="register">
+                    <DefaultButton
+                        type="button"
+                        class="text-blue-600 hover:text-blue-500">
+                        register
+                    </DefaultButton>
+                </RouterLink>
+            </div>
+            <CustomButtonSubmit>Reset Password</CustomButtonSubmit>
+        </form>
+    </div>
+</template>

@@ -1,7 +1,9 @@
-<script>
-
+<script setup>
+    import Register from '@/components/Register.vue';
 </script>
 
 <template>
-    register
+    <div class="flex w-full justify-center">
+        <Register/>
+    </div>
 </template>
