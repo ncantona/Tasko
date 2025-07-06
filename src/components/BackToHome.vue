@@ -6,7 +6,7 @@
 <template>
     <div>
         <RouterLink to="home">
-            <DefaultButton>
+            <DefaultButton class="text-blue-600">
                 Take me Home
             </DefaultButton>
         </RouterLink>

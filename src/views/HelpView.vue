@@ -1,9 +1,10 @@
 <script setup>
-
+    import BackToHome from '@/components/BackToHome.vue';
 </script>
 
 <template>
-    <div class="flex justify-center text-2xl">
-        <span>We are currently working on it.</span>
+    <div class="flex flex-col items-center">
+        <span class="text-2xl">We are currently working on it.</span>
+        <BackToHome/>
     </div>
 </template>
