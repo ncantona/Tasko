@@ -18,6 +18,9 @@
         <div class="flex flex-col gap-10 md:gap-0 max-w-250 mx-auto">
             <ChangePassword v-if="activeSection === 'password'"/>
             <ChangeEmail v-if="activeSection === 'email'"/>
+            <div class="self-center">
+                <DefaultButton class="text-red-600 hover:text-red-400">Delete Account</DefaultButton>
+            </div>
         </div>
     </div>
 </template>

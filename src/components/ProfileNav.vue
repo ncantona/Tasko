@@ -23,7 +23,7 @@
                     <span>Help</span>
                 </RouterLink>
             </DefaultButton>
-            <DefaultButton @click="$emit('clickButton')" class="text-red-500 hover:text-red-400">
+            <DefaultButton @click="$emit('clickButton')" class="text-red-600 hover:text-red-400">
                 Logout
             </DefaultButton>
         </div>
