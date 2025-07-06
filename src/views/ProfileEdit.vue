@@ -2,16 +2,14 @@
     import { ref } from 'vue';
     import DefaultButton from '@/components/DefaultButton.vue';
     import { RouterLink } from 'vue-router';
+    import CustomHeader from '@/components/CustomHeader.vue';
 
     let pictureExists = ref(false);
-
 </script>
 
 <template>
-    <div class="flex flex-col gap-10">
-        <div class="flex flex-row justify-between pb-10 border-b-1 ">
-            <h1 class="text-4xl font-bold">Edit Profile</h1>
-        </div>
+    <div>
+        <CustomHeader>Edit Profile</CustomHeader>
         <div class="flex flex-col md:flex-row justify-center gap-10">
             <div class="flex flex-col justify-start md:w-2/10 items-center relative">
                 <img src="@/images/DefaultProfilePicture.svg" alt="Profile Picture" class="w-5/6 rounded-full max-w-70 min-w-40">
@@ -45,7 +43,7 @@
                 </ul>
             </div>
         </div>
-        <div class="flex flex-row justify-center gap-5 items-center">
+        <div class="flex flex-row justify-center gap-5 items-cente mt-10">
             <RouterLink to="profile">
                 <DefaultButton class="text-blue-600 hover:text-blue-500"
                     @click="changeRoute">

@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <div class="absolute top-full right-0 mt-2 text-black rounded shadow-md p-5 z-50 w-full bg-white/90">
+    <div class="absolute top-full right-0 mt-2 text-black rounded shadow-md p-5 z-50 w-full bg-white/95">
         <div class="flex flex-col text-xl gap-2">
             <ul class="flex flex-col gap-2">
                 <li>

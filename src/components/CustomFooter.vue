@@ -1,7 +1,3 @@
-<script setup>
-
-</script>
-
 <template>
     <div class="flex flex-col md:flex-row md:justify-between items-center mt-20 border-t-1 border-black/40 pt-3 gap-2">
         <span>© 2025 Tasko Inc. All rights reserved.</span>
