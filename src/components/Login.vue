@@ -2,15 +2,27 @@
     import DefaultButton from './small/DefaultButton.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
     import CustomInputText from './small/CustomInputText.vue';
+    import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
 
-    const username = ref('');
+    const email = ref('');
     const password = ref('');
+    const user = useUserStore();
 
-    const handleSubmit = () => {
-        console.log(username.value);
-        console.log(password.value);
-        username.value = '';
+    const handleSubmit = async () => {
+        const objForm = {
+            email: email.value,
+            password: password.value
+        };
+        try {
+            await user.login(objForm);
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message)
+                alert(error.response.data.message);
+            else
+                alert(error.message);
+        }
+        email.value = '';
         password.value = '';
     }
 </script>
@@ -20,10 +32,10 @@
         <span class="text-3xl font-bold self-center">Login</span>
         <form @submit.prevent="handleSubmit" class="flex flex-col gap-5 bg-white/50 shadow-xl rounded-lg p-5">
             <CustomInputText
-                v-model="username"
-                type="text"
-                label="Username"
-                name="username"
+                v-model="email"
+                type="email"
+                label="Email"
+                name="email"
                 />
             <CustomInputText
                 v-model="password"

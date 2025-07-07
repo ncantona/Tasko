@@ -4,6 +4,7 @@
     import DefaultButton from './small/DefaultButton.vue';
     import { URL } from '@/API/Url.vue';
     import { ref } from 'vue';
+    import axios from 'axios';
 
     const email = ref('');
     const username = ref('');
@@ -15,7 +16,7 @@
     
     const emit = defineEmits(['registerSuccess']);
 
-    const handleSubmit = async () => {
+/*     const handleSubmit = async () => {
         const formObj = {
             email: email.value,
             username: username.value,
@@ -40,7 +41,34 @@
         } catch (error) {
             alert(error);
         };
+    } */
+
+    const handleSubmit = async () => {
+        const formObj = {
+            email: email.value,
+            username: username.value,
+            password: password.value,
+            firstName: firstName.value,
+            lastName: lastName.value,
+            termsAccepted: termsAccepted.value
+        };
+        try {
+            const response = await axios.post(`${URL}/api/auth/register`, formObj);
+            emit('registerSuccess');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message)
+                alert(error.response.data.message);
+            else
+                alert(error.message);
+        }
+        email.value = '';
+        username.value = '';
+        password.value = '';
+        firstName.value = '';
+        lastName.value = '';
+        termsAccepted.value = '';
     }
+
 </script>
 
 <template>
@@ -85,7 +113,7 @@
                 name="lastName"
                 :required="false"
             />
-            <CustomInputText class="flex flex-row-reverse justify-center"
+            <CustomInputText class="flex flex-row-reverse justify-center items-center"
                 v-model="termsAccepted"
                 type="checkbox"
                 label="I accept the Terms and Conditions"
