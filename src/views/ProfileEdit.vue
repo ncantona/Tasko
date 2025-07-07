@@ -1,8 +1,8 @@
 <script setup>
-    import { ref } from 'vue';
     import DefaultButton from '@/components/small/DefaultButton.vue';
-    import { RouterLink } from 'vue-router';
     import CustomHeader from '@/components/small/CustomHeader.vue';
+    import { RouterLink } from 'vue-router';
+    import { ref } from 'vue';
 
     let pictureExists = ref(false);
 </script>

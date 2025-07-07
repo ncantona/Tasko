@@ -2,6 +2,9 @@
     import DefaultButton from './small/DefaultButton.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
     import CustomInputText from './small/CustomInputText.vue';
+    import { ref } from 'vue';
+
+    const email = ref('');
 </script>
 
 <template>

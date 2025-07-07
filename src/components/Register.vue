@@ -94,7 +94,10 @@
             <CustomButtonSubmit>Register</CustomButtonSubmit>
         </form>
         <RouterLink to="login" class="self-center">
-            <DefaultButton class="text-blue-600 hover:text-blue-500">Back to Login</DefaultButton>
+            <DefaultButton
+                class="text-blue-600 hover:text-blue-500">
+                Back to Login
+            </DefaultButton>
         </RouterLink>
     </div>
 </template>

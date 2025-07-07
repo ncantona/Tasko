@@ -9,7 +9,10 @@
             <div class="flex text-xl flex-col text-center">
                 <span>Your registration was successful!</span>
                 <RouterLink to="login">
-                    <DefaultButton class="text-blue-600 hover:text-blue-500">Login</DefaultButton>
+                    <DefaultButton
+                        class="text-blue-600 hover:text-blue-500">
+                        Login
+                    </DefaultButton>
                 </RouterLink>
             </div>
         </div>
