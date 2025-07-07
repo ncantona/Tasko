@@ -2,11 +2,13 @@
     import ProfileNav from './ProfileNav.vue';
     import DefaultButton from './small/DefaultButton.vue';
     import { onMounted, ref } from 'vue';
+    import { useUserStore } from '@/stores/useUserStore';
 
     let showProfileOpt = ref(false);
     
     const dropdownRef = ref(null);
-    
+    const { user } = useUserStore();
+
     onMounted(() => {
         document.addEventListener('click', (event) => {
             if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
@@ -30,12 +32,12 @@
         <div class="relative" ref="dropdownRef">
             <DefaultButton
                 @click="toggleDropdown"
-                class="flex items-center gap-2 hover:text-blue-600">
+                class="flex items-center gap-2 hover:text-blue-600 min-w-40">
                 <img
                     src="@/images/DefaultProfilePicture.svg"
                     alt="Profile Picture"
                     class="w-10 h-10 rounded-full object-cover">
-                PH-username
+                {{ user.username }}
             </DefaultButton>
             <ProfileNav v-show="showProfileOpt" @clickButton="showProfileOpt = false"/>
         </div>

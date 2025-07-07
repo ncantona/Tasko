@@ -4,6 +4,9 @@
     import SharedTaskLists from '@/components/SharedTaskLists.vue';
     import PreviousTaskLists from '@/components/PreviousTaskLists.vue';
     import CustomHeader from '@/components/small/CustomHeader.vue';
+    import { useUserStore } from '@/stores/useUserStore';
+
+    const { user } = useUserStore();
 </script>
 
 <template>
@@ -12,10 +15,10 @@
         <div class="flex flex-col gap-20 md:flex-row">
             <div class="flex flex-col justify-start md:w-2/10 items-center gap-2">
                 <img src="@/images/DefaultProfilePicture.svg" alt="Profile Picture" class="w-5/6 rounded-full max-w-40 min-w-30">
-                <span>@PH-username</span>
+                <span>@{{ user.username }}</span>
                 <div class="flex flex-col">
-                    <span>Vorname PH</span>
-                    <span>Nachname PH</span>
+                    <span>{{ user.firstName }}</span>
+                    <span>{{ user.lastName }}</span>
                 </div>
                 <RouterLink to="editProfile">
                     <DefaultButton class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 mt-2"

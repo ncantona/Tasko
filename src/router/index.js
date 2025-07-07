@@ -1,3 +1,4 @@
+import { useUserStore } from '@/stores/useUserStore'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -55,5 +56,7 @@ const router = createRouter({
     }
   ],
 })
+
+router.beforeEach(() => useUserStore().initialize());
 
 export default router

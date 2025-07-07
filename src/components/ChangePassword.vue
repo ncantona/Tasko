@@ -1,16 +1,24 @@
 <script setup>
     import CustomInputText from './small/CustomInputText.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
+    import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
 
     const currentPassword = ref('');
     const newPassword = ref('');
     const retypePassword = ref('');
+    const user = useUserStore();
 
-    const handleSubmit = () => {
-        console.log('Current Password:', currentPassword.value);
-        console.log('New Password:', newPassword.value);
-        console.log('Retype Password:', retypePassword.value);
+    const handleSubmit = async () => {
+        try {
+            await user.login({email: user.user.email, password: currentPassword.value}).catch(() => {throw ('Wrong Password')});
+            if (newPassword.value != retypePassword.value)
+                throw ('Passwords are not the same');
+            await user.changeUserPassword(newPassword.value);
+            alert('Password was changed');
+        } catch (error) {
+            alert(error);
+        }
         currentPassword.value = '';
         newPassword.value = '';
         retypePassword.value = '';

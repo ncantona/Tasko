@@ -3,6 +3,7 @@
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
     import CustomInputText from './small/CustomInputText.vue';
     import { useUserStore } from '@/stores/useUserStore';
+    import router from '@/router';
     import { ref } from 'vue';
 
     const email = ref('');
@@ -16,6 +17,7 @@
         };
         try {
             await user.login(objForm);
+            router.go('home');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message)
                 alert(error.response.data.message);

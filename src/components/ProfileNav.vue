@@ -1,5 +1,7 @@
 <script setup>
+    import { useUserStore } from '@/stores/useUserStore';
 
+    const user = useUserStore();
 </script>
 
 <template>
@@ -28,7 +30,7 @@
             </RouterLink>
             <RouterLink
                 to="login"
-                @click="$emit('clickButton')"
+                @click="$emit('clickButton'); user.logout();"
                 class="text-red-600 hover:text-red-400 self-center">
                 <span>Logout</span>
             </RouterLink>

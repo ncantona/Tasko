@@ -28,7 +28,6 @@ export const useUserStore = defineStore('user', {
         async login(body) {
             const { data } = await axios.post(`${URL}/api/auth/login`, body);
             this.applyAuthentication(data);
-            console.log(this.user);
         },
         logout() {
             this.user = null;
@@ -42,6 +41,9 @@ export const useUserStore = defineStore('user', {
             const { data } = await axios(`${URL}/api/user`, body);
             const { sharedTasklists, tasklists, ...userWithoutLists } = data;
             this.user = userWithoutLists;
+        },
+        async changeUserPassword(newPassword) {
+            await axios.post(`${URL}/api/user/password`, {password: newPassword});
         }
     }
 })
