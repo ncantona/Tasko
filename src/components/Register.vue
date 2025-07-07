@@ -2,6 +2,7 @@
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
     import CustomInputText from './small/CustomInputText.vue';
     import DefaultButton from './small/DefaultButton.vue';
+    import { URL } from '@/API/Url.vue';
     import { ref } from 'vue';
 
     const email = ref('');
@@ -12,12 +13,15 @@
     const lastName = ref('');
     const termsAccepted = ref(false);
 
-    const handleSubmit = () => {
-        console.log(username.value);
-        console.log(password.value);
-        username.value = '';
-        password.value = '';
+    const formObj = {
+        email: email.value,
+        username: username.value,
+        password: password.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        termsAccepted: termsAccepted.value
     }
+    
 </script>
 
 <template>
