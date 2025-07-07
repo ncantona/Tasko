@@ -1,12 +1,16 @@
 <script setup>
     import CustomInputText from './small/CustomInputText.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
+    import PopupWindow from './PopupWindow.vue';
+    import axios from 'axios';
     import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
 
     const currentPassword = ref('');
     const newPassword = ref('');
     const retypePassword = ref('');
+    const showSuccess = ref(false);
+    const showError = ref('');
     const user = useUserStore();
 
     const handleSubmit = async () => {
@@ -15,9 +19,12 @@
             if (newPassword.value != retypePassword.value)
                 throw ('Passwords are not the same');
             await user.changeUserPassword(newPassword.value);
-            alert('Password was changed');
+            showSuccess.value = true;
         } catch (error) {
-            alert(error);
+            if (axios.isAxiosError(error))
+                showError.value = error.response?.data?.message || error.message;
+            else
+                showError.value = error;
         }
         currentPassword.value = '';
         newPassword.value = '';
@@ -26,7 +33,7 @@
 </script>
 
 <template>
-    <div class="border-1 rounded-xl md:border-none p-4">
+    <div class="bg-white/50 shadow-xl rounded-xl p-8">
         <div class="flex flex-col md:flex-row justify-center gap-10">
             <form @submit.prevent="handleSubmit" class="flex flex-col justify-center items-center gap-5">
                 <div class="flex flex-col md:flex-row gap-5 w-full">
@@ -50,6 +57,18 @@
                     />
                 </div>
                 <CustomButtonSubmit>Change Password</CustomButtonSubmit>
+                <PopupWindow
+                    v-if="showSuccess"
+                    @close="showSuccess = false"
+                    type="success">
+                    Password change successful
+                </PopupWindow>
+                <PopupWindow
+                    v-if="showError"
+                    @close="showError = ''"
+                    type="error">
+                    {{ showError }}
+                </PopupWindow>
             </form>
         </div>
     </div>

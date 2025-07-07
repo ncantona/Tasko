@@ -15,7 +15,7 @@
 </script>
 
 <template>
-    <div class="border-1 rounded-xl md:border-none p-4">
+    <div class="bg-white/50 shadow-xl rounded-xl p-8">
         <div class="flex flex-col md:flex-row justify-center gap-10">
             <form @submit.prevent="handleSubmit" class="flex flex-col justify-center items-center gap-5">
                 <div class="flex flex-col md:flex-row gap-5 w-full">

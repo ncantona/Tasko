@@ -23,7 +23,7 @@
                 Email
             </DefaultButton>
         </div>
-        <div class="flex flex-col gap-10 md:gap-0 max-w-250 mx-auto">
+        <div class="flex flex-col gap-5 max-w-100 md:max-w-250 mx-auto">
             <ChangePassword v-if="activeSection === 'password'"/>
             <ChangeEmail v-if="activeSection === 'email'"/>
             <div class="self-center">
