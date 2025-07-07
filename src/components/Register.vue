@@ -12,22 +12,41 @@
     const firstName = ref('');
     const lastName = ref('');
     const termsAccepted = ref(false);
-
-    const formObj = {
-        email: email.value,
-        username: username.value,
-        password: password.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        termsAccepted: termsAccepted.value
-    }
     
+    const emit = defineEmits(['registerSuccess']);
+
+    const handleSubmit = async () => {
+        const formObj = {
+            email: email.value,
+            username: username.value,
+            password: password.value,
+            firstName: firstName.value,
+            lastName: lastName.value,
+            termsAccepted: termsAccepted.value
+        };
+        try {
+            const response = await fetch(`${URL}/api/auth/register`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObj)
+            })
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw Error(errorData.message);
+            }
+            emit('registerSuccess');
+        } catch (error) {
+            alert(error);
+        };
+    }
 </script>
 
 <template>
     <div class="flex flex-col justify-center gap-3 w-5/6 max-w-100">
         <span class="text-3xl font-bold self-center">Register</span>
-        <form @submit.prevent="handleSubmit" class="flex flex-col gap-5 border-1 rounded-lg p-5">
+        <form @submit.prevent="handleSubmit" class="flex flex-col gap-5 bg-white/50 shadow-xl rounded-lg p-5">
             <CustomInputText
                 v-model="email"
                 type="email"
@@ -57,12 +76,14 @@
                 type="text"
                 label="First Name (optional)"
                 name="firstName"
+                :required="false"
             />
             <CustomInputText
                 v-model="lastName"
                 type="text"
                 label="Last Name (optional)"
                 name="lastName"
+                :required="false"
             />
             <CustomInputText class="flex flex-row-reverse justify-center"
                 v-model="termsAccepted"
