@@ -33,7 +33,7 @@
         <div class="relative" ref="dropdownRef">
             <DefaultButton
                 @click="toggleDropdown"
-                class="flex items-center gap-2 hover:text-blue-600 min-w-40 justify-end">
+                class="flex items-center gap-2 hover:text-blue-600 min-w-40 justify-center">
                 <img
                     src="@/images/DefaultProfilePicture.svg"
                     alt="Profile Picture"
