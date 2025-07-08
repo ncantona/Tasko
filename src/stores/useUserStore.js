@@ -44,6 +44,10 @@ export const useUserStore = defineStore('user', {
         },
         async changeUserPassword(newPassword) {
             await axios.post(`${URL}/api/user/password`, {password: newPassword});
+        },
+        async deleteAccount() {
+            await axios.delete(`${URL}/api/user`);
+            localStorage.removeItem('jwt');
         }
     }
 })
