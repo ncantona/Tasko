@@ -16,6 +16,8 @@
     const handleSubmit = async () => {
         try {
             await user.login({email: user.user.email, password: currentPassword.value}).catch(() => {throw ('Wrong Password')});
+            if (currentPassword.value === newPassword.value)
+                throw ('New password matches current password');
             if (newPassword.value != retypePassword.value)
                 throw ('Passwords are not the same');
             await user.changeUserPassword(newPassword.value);
