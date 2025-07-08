@@ -1,13 +1,14 @@
 <script setup>
     import ProfileNav from './ProfileNav.vue';
     import DefaultButton from './small/DefaultButton.vue';
+    import { storeToRefs } from 'pinia';
     import { onMounted, ref } from 'vue';
     import { useUserStore } from '@/stores/useUserStore';
 
     let showProfileOpt = ref(false);
     
     const dropdownRef = ref(null);
-    const { user } = useUserStore();
+    const { user } = storeToRefs(useUserStore());
 
     onMounted(() => {
         document.addEventListener('click', (event) => {
@@ -32,7 +33,7 @@
         <div class="relative" ref="dropdownRef">
             <DefaultButton
                 @click="toggleDropdown"
-                class="flex items-center gap-2 hover:text-blue-600 min-w-40">
+                class="flex items-center gap-2 hover:text-blue-600 min-w-40 justify-end">
                 <img
                     src="@/images/DefaultProfilePicture.svg"
                     alt="Profile Picture"
