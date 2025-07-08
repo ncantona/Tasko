@@ -38,6 +38,7 @@
     <div class="bg-white/50 shadow-xl rounded-xl p-8">
         <div class="flex flex-col md:flex-row justify-center gap-10">
             <form @submit.prevent="handleSubmit" class="flex flex-col justify-center items-center gap-5">
+                <span><b>Registered Email:</b> {{ user.user.email }}</span>
                 <div class="flex flex-col md:flex-row gap-5 w-full">
                     <CustomInputText
                         v-model="email"
