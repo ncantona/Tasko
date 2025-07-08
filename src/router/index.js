@@ -57,6 +57,33 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach(() => useUserStore().initialize());
+
+//** chatgpt generiert!!! austauschen mit eigener funktion */
+router.beforeEach(async (to, from, next) => {
+  const userStore = useUserStore()
+
+  // Initialisiere den Store nur einmal
+  if (!userStore.isInitialized) {
+    await userStore.initialize()
+  }
+
+  const isLoggedIn = userStore.user !== null
+
+  // Wenn nicht eingeloggt, und Route verlangt Login
+  const requiresAuth = to.path.startsWith('/home') || to.path.startsWith('/profile') || to.path.startsWith('/editProfile') || to.path.startsWith('/account') || to.path.startsWith('/help')
+
+  if (!isLoggedIn && requiresAuth) {
+    // Redirect zum Login
+    return next({ name: 'login' })
+  }
+
+  // Optional: Wenn eingeloggt, verhindere Zugriff auf Login/Register
+  if (isLoggedIn && (to.name === 'login' || to.name === 'register')) {
+    return next({ name: 'home' })
+  }
+
+  // Sonst weitermachen
+  next()
+})
 
 export default router
