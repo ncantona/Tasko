@@ -12,10 +12,10 @@
 <template>
     <div>
         <CustomHeader>Profile</CustomHeader>
-        <div class="flex flex-col gap-20 md:flex-row">
-            <div class="flex flex-col justify-start md:w-2/10 items-center gap-2">
+        <div class="flex flex-col gap-10 md:flex-row">
+            <div class="flex flex-col justify-start items-center md:items-start md:w-2/10 gap-2">
                 <img src="@/images/DefaultProfilePicture.svg" alt="Profile Picture" class="w-5/6 rounded-full max-w-40 min-w-30">
-                <span>@{{ user.username }}</span>
+                <span class="font-bold text-xl">@{{ user.username }}</span>
                 <div class="flex flex-col">
                     <span>{{ user.firstName }}</span>
                     <span>{{ user.lastName }}</span>
@@ -23,11 +23,11 @@
                 <RouterLink to="editProfile">
                     <DefaultButton class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 mt-2"
                         @click="changeRoute">
-                        edit Profile
+                        Edit Profile
                     </DefaultButton>
                 </RouterLink>
             </div>
-            <div class="flex flex-col gap-2 w-full">
+            <div class="flex flex-col gap-2 w-full max-w-200">
                 <CurrentTasksLists/>
                 <SharedTaskLists/>
                 <PreviousTaskLists/>

@@ -5,8 +5,8 @@
 </script>
 
 <template>
-    <div class="flex flex-col gap-2 p-3 border-2 border-black/40 rounded-md">
-        <span>My current Tasklists:</span>
+    <div class="flex flex-col gap-2 bg-white/50 shadow-xl rounded-xl p-8">
+        <span class="font-bold">My current Tasklists:</span>
         <span v-show="!currentTaskLists.length">Empty.</span>
         <ul v-show="currentTaskLists.length">
             <li v-for="task in currentTaskLists">
