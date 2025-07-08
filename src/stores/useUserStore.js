@@ -38,7 +38,7 @@ export const useUserStore = defineStore('user', {
             localStorage.setItem('jwt', `Bearer ${token}`);
         },
         async updateUser(body) {
-            const { data } = await axios(`${URL}/api/user`, body);
+            const { data } = await axios.put(`${URL}/api/user`, body);
             const { sharedTasklists, tasklists, ...userWithoutLists } = data;
             this.user = userWithoutLists;
         },
