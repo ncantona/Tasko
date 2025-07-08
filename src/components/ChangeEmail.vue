@@ -1,14 +1,34 @@
 <script setup>
     import CustomInputText from './small/CustomInputText.vue';
     import CustomButtonSubmit from './small/CustomButtonSubmit.vue';
+    import PopupWindow from './PopupWindow.vue';
+    import axios from 'axios';
+    import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
 
     const email = ref('');
     const password = ref('');
+    const user = useUserStore();
+    const showSuccess = ref(false);
+    const showError = ref('');
 
-    const handleSubmit = () => {
-        console.log(email.value);
-        console.log(password.value);
+    const handleSubmit = async () => {
+        try {
+            await user.login({email: user.user.email, password: password.value}).catch(() => {throw ('Wrong Password')});
+            const userData = {
+                username: user.user.username,
+                firstName: user.user.firstName,
+                lastName: user.user.lastName,
+                email: email.value
+            };
+            await user.updateUser(userData);
+            showSuccess.value = true;
+        } catch (error) {
+            if (axios.isAxiosError(error))
+                showError.value = error.response?.data?.message || error.message;
+            else
+                showError.value = error;
+        }
         email.value = '';
         password.value = '';
     }
@@ -35,5 +55,17 @@
                 <CustomButtonSubmit>Change Email</CustomButtonSubmit>
             </form>
         </div>
+        <PopupWindow
+            v-if="showSuccess"
+            @close="showSuccess = false"
+            type="success">
+            Email change successful
+        </PopupWindow>
+        <PopupWindow
+            v-if="showError"
+            @close="showError = ''"
+            type="error">
+            {{ showError }}
+        </PopupWindow>
     </div>
 </template>
