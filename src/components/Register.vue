@@ -64,6 +64,7 @@
         email.value = '';
         username.value = '';
         password.value = '';
+        retypePassword.value = '';
         firstName.value = '';
         lastName.value = '';
         termsAccepted.value = '';
