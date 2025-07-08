@@ -1,11 +1,22 @@
 <script setup>
     import ChangeEmail from '@/components/ChangeEmail.vue';
     import ChangePassword from '@/components/ChangePassword.vue';
+    import DeleteWindow from '@/components/DeleteWindow.vue';
     import CustomHeader from '@/components/small/CustomHeader.vue';
     import DefaultButton from '@/components/small/DefaultButton.vue';
+    import router from '@/router';
+    import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
     
     const activeSection = ref('password');
+    const showDelete = ref(false);
+    const user = useUserStore();
+
+    const deleteAccount = async () => {
+        await user.deleteAccount();
+        router.go('login');
+    }
+
 </script>
 
 <template>
@@ -27,11 +38,12 @@
             <ChangePassword v-if="activeSection === 'password'"/>
             <ChangeEmail v-if="activeSection === 'email'"/>
             <div class="self-center">
-                <DefaultButton
+                <DefaultButton @click="showDelete = true"
                     class="text-red-600 hover:text-red-400">
                     Delete Account
                 </DefaultButton>
             </div>
         </div>
+        <DeleteWindow v-if="showDelete" @cancel="showDelete = false" @delete="deleteAccount"></DeleteWindow>
     </div>
 </template>
