@@ -39,8 +39,7 @@ export const useUserStore = defineStore('user', {
         },
         async updateUser(body) {
             const { data } = await axios.put(`${URL}/api/user`, body);
-            const { sharedTasklists, tasklists, ...userWithoutLists } = data;
-            this.user = userWithoutLists;
+            this.user = data;
         },
         async changeUserPassword(newPassword) {
             await axios.post(`${URL}/api/user/password`, {password: newPassword});
