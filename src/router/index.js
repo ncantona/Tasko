@@ -1,4 +1,5 @@
 import { useUserStore } from '@/stores/useUserStore'
+import { useTaskListStore } from '@/stores/useTaskListStore'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -60,12 +61,15 @@ const router = createRouter({
 
 //** chatgpt generiert!!! austauschen mit eigener funktion */
 router.beforeEach(async (to, from, next) => {
-  const userStore = useUserStore()
+  const userStore = useUserStore();
+  const tasklistStore = useTaskListStore();
 
   // Initialisiere den Store nur einmal
   if (!userStore.isInitialized) {
-    await userStore.initialize()
+    await userStore.initialize();
   }
+  if (userStore.user && !tasklistStore.tasklists.length)
+    await tasklistStore.initialize();
 
   const isLoggedIn = userStore.user !== null
 
