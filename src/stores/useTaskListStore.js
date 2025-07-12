@@ -24,6 +24,12 @@ export const useTaskListStore = defineStore('tasklists', {
         async createNewTask(body) {
             const { data } = await axios.post(`${URL}/api/tasklist`, body);
             this.tasklists.push(data);
+        },
+        async addNewTask(taskData) {
+            const { data } = await axios.post(`${URL}/api/task`, taskData);
+            const targetTasklist = this.tasklists.find(tl => tl.id === data.tasklistId);
+            if (targetTasklist)
+                targetTasklist.tasks.push(data);
         }
     }
 })
