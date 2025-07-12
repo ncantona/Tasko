@@ -1,6 +1,6 @@
 <script setup>
-    import NavBar from '@/components/NavBar.vue';
-    import CustomFooter from '@/components/CustomFooter.vue';
+    import NavBar from '@/components/General/NavBar.vue';
+    import CustomFooter from '@/components/General/CustomFooter.vue';
 </script>
 
 <template>
