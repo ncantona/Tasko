@@ -1,5 +1,5 @@
 <script setup>
-    import BackToHome from '@/components/BackToHome.vue';
+    import BackToHome from '@/components/small/BackToHome.vue';
     import CustomHeader from '@/components/small/CustomHeader.vue';
 </script>
 

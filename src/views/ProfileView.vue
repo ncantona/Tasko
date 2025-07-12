@@ -1,8 +1,8 @@
 <script setup>
     import DefaultButton from '@/components/small/DefaultButton.vue';
-    import CurrentTasksLists from '@/components/CurrentTasksLists.vue';
-    import SharedTaskLists from '@/components/SharedTaskLists.vue';
-    import PreviousTaskLists from '@/components/PreviousTaskLists.vue';
+    import CurrentTasksLists from '@/components/Profile/CurrentTasksLists.vue';
+    import SharedTaskLists from '@/components/Profile/SharedTaskLists.vue';
+    import PreviousTaskLists from '@/components/Profile/PreviousTaskLists.vue';
     import CustomHeader from '@/components/small/CustomHeader.vue';
     import { useUserStore } from '@/stores/useUserStore';
 

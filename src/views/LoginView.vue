@@ -1,6 +1,6 @@
 <script setup>
-    import Login from '@/components/Login.vue';
-    import ResetPassword from '@/components/ResetPassword.vue';
+    import Login from '@/components/LoginRegister/Login.vue';
+    import ResetPassword from '@/components/LoginRegister/ResetPassword.vue';
     import { ref } from 'vue';
 
     const showResetPassword = ref(false);

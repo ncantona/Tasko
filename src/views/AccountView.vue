@@ -1,7 +1,7 @@
 <script setup>
-    import ChangeEmail from '@/components/ChangeEmail.vue';
-    import ChangePassword from '@/components/ChangePassword.vue';
-    import DeleteWindow from '@/components/DeleteWindow.vue';
+    import ChangeEmail from '@/components/Account/ChangeEmail.vue';
+    import ChangePassword from '@/components/Account/ChangePassword.vue';
+    import DeleteWindow from '@/components/Account/DeleteWindow.vue';
     import CustomHeader from '@/components/small/CustomHeader.vue';
     import DefaultButton from '@/components/small/DefaultButton.vue';
     import router from '@/router';
