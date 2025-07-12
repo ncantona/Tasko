@@ -9,6 +9,7 @@
     
     const dropdownRef = ref(null);
     const { user } = storeToRefs(useUserStore());
+    const toggleDropdown = () => showProfileOpt.value = !showProfileOpt.value;
 
     onMounted(() => {
         document.addEventListener('click', (event) => {
@@ -17,18 +18,12 @@
             }
         });
     });
-
-    const toggleDropdown = () => showProfileOpt.value = !showProfileOpt.value;
 </script>
 
 <template>
     <div class="flex justify-between text-xl mt-4 text-black w-full">
-        <RouterLink to="home">
-            <DefaultButton
-                @click="changeRoute"
-                class="text-2xl">
+        <RouterLink to="home" class="text-2xl">
                 Tasko
-            </DefaultButton>
         </RouterLink>
         <div class="relative" ref="dropdownRef">
             <DefaultButton
@@ -37,7 +32,8 @@
                 <img
                     src="@/images/DefaultProfilePicture.svg"
                     alt="Profile Picture"
-                    class="w-10 h-10 rounded-full object-cover">
+                    class="w-10 h-10 rounded-full object-cover"
+                >
                 {{ user.username }}
             </DefaultButton>
             <ProfileNav v-show="showProfileOpt" @clickButton="showProfileOpt = false"/>
