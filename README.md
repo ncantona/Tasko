@@ -4,7 +4,7 @@ A modern and intuitive task management application built with Vue.js, allowing u
 
 ## Features
 
-- **User Authentication**: Complete login/register system with password reset
+- **User Authentication**: Complete login/register system
 - **Task Management**: Create, edit, and delete tasks
 - **Task Lists**: Organize tasks into customizable lists
 - **User Profiles**: Manage personal information and profile settings
@@ -76,26 +76,6 @@ To preview the production build locally:
 npm run preview
 ```
 
-## Project Structure
-
-```
-src/
-├── components/           # Reusable Vue components
-│   ├── Account/         # Account management components
-│   ├── General/         # General UI components
-│   ├── LoginRegister/   # Authentication components
-│   ├── Profile/         # User profile components
-│   ├── TasklistsSmall/  # Task list components
-│   └── small/           # Small utility components
-├── layouts/             # Layout components
-├── router/              # Vue Router configuration
-├── stores/              # Pinia stores
-├── views/               # Page components
-├── assets/              # Static assets
-├── images/              # Image assets
-└── API/                 # API configuration
-```
-
 ## Key Components
 
 - **[`useUserStore`](src/stores/useUserStore.js)**: Manages user authentication and profile data
@@ -110,7 +90,6 @@ The application includes a complete authentication system:
 
 - User registration with email validation
 - Login with email and password
-- Password reset functionality
 - JWT token-based authentication
 - Protected routes for authenticated users
 
