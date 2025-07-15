@@ -18,7 +18,7 @@
                 <TaskNavSmall class="w-full"/>
                 <NewTasklist @newTask="toggleNewTaskWindow" class="max-h-full"/>
             </div>
-            <NewTasklistWindow></NewTasklistWindow>
+            <NewTasklistWindow/>
             <TaskListSmall class="mt-5"/>
         </div>
     </div>

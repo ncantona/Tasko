@@ -3,12 +3,14 @@
     import CustomButtonSubmit from '@/components/small/CustomButtonSubmit.vue';
     import CustomInputText from '@/components/small/CustomInputText.vue';
     import { useUserStore } from '@/stores/useUserStore';
+    import { usePopupStore } from '@/stores/usePopupStore';
     import router from '@/router';
     import { ref } from 'vue';
 
     const email = ref('');
     const password = ref('');
     const user = useUserStore();
+    const popupStore = usePopupStore();
 
     const handleSubmit = async () => {
         const objForm = {
@@ -20,11 +22,10 @@
             router.go('home');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message)
-                alert(error.response.data.message);
+                popupStore.error = String(error.response.data.message);
             else
-                alert(error.message);
+                popupStore.error = String(error.message);
         }
-        email.value = '';
         password.value = '';
     }
 </script>
