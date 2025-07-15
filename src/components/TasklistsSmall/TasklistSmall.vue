@@ -1,16 +1,18 @@
 <script setup>
-    import { useTaskListStore } from '@/stores/useTaskListStore';
     import DefaultButton from '@/components/small/DefaultButton.vue';
     import TaskListBodySmall from '@/components/TasklistsSmall/TasklistBodySmall.vue';
+    import TaskNavSmall from './TaskNavSmall.vue';
+    import { useTaskListStore } from '@/stores/useTaskListStore';
     import { ref } from 'vue';
 
     const tasklistStore = useTaskListStore();
-    const openStates = ref({}); // key: tasklist.id, value: boolean
+
+    const openStates = ref({});
+    const isOpen = (id) => !!openStates.value[id];
+
     const toggleOpen = (id) => {
         openStates.value[id] = !openStates.value[id];
     };
-
-    const isOpen = (id) => !!openStates.value[id];
     const getColor = (id) => {
         switch (id % 10) {
             case 0:
@@ -40,7 +42,9 @@
 </script>
 
 <template>
+
     <div class="flex flex-col gap-1">
+        <TaskNavSmall class="mb-5"/>
         <div v-for="tasklist in tasklistStore.tasklists">
             <DefaultButton
                 @click="toggleOpen(tasklist.id)"
@@ -52,7 +56,11 @@
                     <path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </DefaultButton>
-            <TaskListBodySmall :tasklist="tasklist" v-show="isOpen(tasklist.id)" :style="[`border-color: ${getColor(tasklist.id)}`]"/>
+            <TaskListBodySmall
+                :tasklist="tasklist"
+                v-show="isOpen(tasklist.id)"
+                :style="[`border-color: ${getColor(tasklist.id)}`]"
+            />
         </div>
     </div>
 </template>
