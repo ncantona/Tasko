@@ -30,6 +30,23 @@ export const useTaskListStore = defineStore('tasklists', {
             const targetTasklist = this.tasklists.find(tl => tl.id === data.tasklistId);
             if (targetTasklist)
                 targetTasklist.tasks.push(data);
+        },
+        async deleteTask(tasklist, id) {
+            await axios.delete(`${URL}/api/task/${id}`);
+            tasklist.tasks = tasklist.tasks.filter(task => task.id !== id);
+        },
+        async deleteTasklist(id) {
+            await axios.delete(`${URL}/api/tasklist/${id}`);
+            this.tasklists = this.tasklists.filter(tasklist => tasklist.id !== id);
+        },
+        async updateTasklist(taskData, id) {
+            const { data } = await axios.put(`${URL}/api/tasklist/${id}`, taskData);
+            const targetTasklist = this.tasklists.find(tl => tl.id === id);
+            if (targetTasklist)
+            {
+                targetTasklist.label = data.label;
+                targetTasklist.description = data.description;
+            }
         }
     }
 })
