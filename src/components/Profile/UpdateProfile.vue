@@ -1,40 +1,36 @@
 <script setup>
     import CustomInputText from '@/components/small/CustomInputText.vue';
-    import PopupWindow from '@/components/General/PopupWindow.vue';
+    import { usePopupStore } from '@/stores/usePopupStore';
     import CustomButtonSubmit from '@/components/small/CustomButtonSubmit.vue';
     import axios from 'axios';
     import { useUserStore } from '@/stores/useUserStore';
     import { RouterLink } from 'vue-router';
     import { ref } from 'vue';
 
-    const user = useUserStore();
-    const username = ref('');
-    const firstName = ref('');
-    const lastName = ref('');
-    const showSuccess = ref(false);
-    const showError = ref('');
+    const userStore = useUserStore();
+    const username = ref(`${userStore.user.username}`);
+    const firstName = ref(`${userStore.user.firstName}`);
+    const lastName = ref(`${userStore.user.lastName}`);
+    const popupStore = usePopupStore();
 
     const handleSubmit = async () => {
         if (!username.value.length && !firstName.value.length && !lastName.value.length)
             return ;
         const userData = {
-            username: username.value ? username.value : user.user.username,
-            firstName: firstName.value ? firstName.value : user.user.firstName,
-            lastName: lastName.value ? lastName.value : user.user.lastName,
-            email: user.user.email
+            username: username.value,
+            firstName: firstName.value,
+            lastName: lastName.value,
+            email: userStore.user.email
         };
         try {
-            await user.updateUser(userData);
-            showSuccess.value = true;
+            await userStore.updateUser(userData);
+            popupStore.success = 'Profile updated successfully'
         } catch (error) {
             if (axios.isAxiosError(error))
-                showError.value = error.response?.data?.message || error.message;
+                popupStore.error = error.response?.data?.message || error.message;
             else
-                showError.value = error;
+                popupStore.error = error;
         }
-        username.value = '';
-        firstName.value = '';
-        lastName.value = '';
     }
 </script>
 
@@ -75,17 +71,5 @@
                 Save changes
             </CustomButtonSubmit>
         </div>
-        <PopupWindow
-            v-if="showSuccess"
-            @close="showSuccess = false"
-            type="success">
-            Profile update successful
-        </PopupWindow>
-        <PopupWindow
-            v-if="showError"
-            @close="showError = ''"
-            type="error">
-            {{ showError }}
-        </PopupWindow>
     </form>
 </template>
