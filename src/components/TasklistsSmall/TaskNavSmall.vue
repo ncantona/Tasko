@@ -15,7 +15,7 @@
             <span class="font-bold">Options</span>
             <img src="@/images/Arrow.svg" alt="Arrow svg">
         </DefaultButton>
-        <NewTasklist @newTask="toggleNewTaskWindow" class="max-h-full"/>
+        <NewTasklist class="max-h-full"/>
         <TaskOptionsSmall v-show="showOptions" class="absolute mt-15 w-5/6"/>
     </div>
 </template>

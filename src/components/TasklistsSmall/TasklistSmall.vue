@@ -58,6 +58,7 @@
             </DefaultButton>
             <TaskListBodySmall
                 :tasklist="tasklist"
+                :color="getColor(tasklist.id)"
                 v-show="isOpen(tasklist.id)"
                 :style="[`border-color: ${getColor(tasklist.id)}`]"
             />
