@@ -1,5 +1,4 @@
 <script setup>
-    import DefaultButton from '@/components/small/DefaultButton.vue';
     import CurrentTasksLists from '@/components/Profile/CurrentTasksLists.vue';
     import SharedTaskLists from '@/components/Profile/SharedTaskLists.vue';
     import PreviousTaskLists from '@/components/Profile/PreviousTaskLists.vue';
@@ -20,11 +19,8 @@
                     <span>{{ user.firstName }}</span>
                     <span>{{ user.lastName }}</span>
                 </div>
-                <RouterLink to="editProfile">
-                    <DefaultButton class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 mt-2"
-                        @click="changeRoute">
-                        Edit Profile
-                    </DefaultButton>
+                <RouterLink to="editProfile" class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 mt-2">
+                    Edit Profile
                 </RouterLink>
             </div>
             <div class="flex flex-col gap-2 w-full max-w-200">
