@@ -24,5 +24,4 @@
         {{ popupStore.error }}
       </PopupWindow>
     </div>
-
 </template>
