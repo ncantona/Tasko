@@ -47,6 +47,32 @@ export const useTaskListStore = defineStore('tasklists', {
                 targetTasklist.label = data.label;
                 targetTasklist.description = data.description;
             }
-        }
+        },
+        async updateTaskState(task, newState) {
+            const taskData = {
+                title: task.title,
+                status: newState,
+            }
+            await axios.put(`${URL}/api/task/${task.id}`, taskData);
+            task.status = newState;
+        },
+        sortTasksByStatus(tasklistId) {
+            const statusOrder = {
+                'TODO': 0,
+                'IN_PROGRESS': 1,
+                'DONE': 2,
+            };
+            const tasklist = this.tasklists.find(tl => tl.id === tasklistId);
+            if (tasklist && Array.isArray(tasklist.tasks)) {
+                tasklist.tasks.sort((a, b) => {
+                    return statusOrder[a.status] - statusOrder[b.status];
+        });
+    }
+        },
+        async updateTask(taskData, task) {
+            const { data } = await axios.put(`${URL}/api/task/${task.id}`, taskData);
+            task.title = taskData.title;
+            task.description = taskData.description;
+        },
     }
 })
