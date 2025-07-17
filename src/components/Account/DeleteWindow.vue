@@ -5,7 +5,7 @@ import DefaultButton from '@/components/small/DefaultButton.vue';
 </script>
 
 <template>
-    <div class="fixed inset-0 flex items-center justify-center bg-black/50">
+    <div class="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-black/50">
         <div class="bg-white p-8 rounded shadow-md text-center w-5/6 max-w-150 flex flex-col gap-5">
             <span class="text-xl">Are you sure you want to permanently delete your account?</span>
             <div class="flex justify-center gap-5">
