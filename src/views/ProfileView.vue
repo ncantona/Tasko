@@ -19,7 +19,7 @@
                     <span>{{ user.firstName }}</span>
                     <span>{{ user.lastName }}</span>
                 </div>
-                <RouterLink to="editProfile" class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 mt-2">
+                <RouterLink to="editProfile" class="p-2 bg-blue-600 px-4 py-2 text-white rounded-md hover:bg-blue-500 mt-2">
                     Edit Profile
                 </RouterLink>
             </div>
