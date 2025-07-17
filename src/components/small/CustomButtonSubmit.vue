@@ -4,7 +4,7 @@
 
 <template>
     <DefaultButton
-        class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-500"
+        class="bg-blue-600 text-white rounded-md p-4 py-2 hover:bg-blue-500"
         @click="$emit('submit')">
         <slot></slot>
     </DefaultButton>
