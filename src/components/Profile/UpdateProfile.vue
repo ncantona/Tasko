@@ -62,8 +62,7 @@
         <div class="flex flex-row justify-center gap-5 items-center">
             <RouterLink to="profile"
                 type="button"
-                class="text-blue-600 hover:text-blue-500"
-                @click="changeRoute">
+                class="text-blue-600 hover:text-blue-500">
                 Cancel
             </RouterLink>
             <CustomButtonSubmit
