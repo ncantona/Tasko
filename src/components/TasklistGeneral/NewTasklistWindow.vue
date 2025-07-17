@@ -9,7 +9,7 @@
     const props = defineProps({
         tasklistId: String
     });
-    const emits = defineEmits('close');
+    const emits = defineEmits(['close']);
 
     const tasklistStore = useTaskListStore();
     const popupStore = usePopupStore();
@@ -34,8 +34,8 @@
 </script>
 
 <template>
-    <div class="fixed inset-0 flex items-center justify-center bg-black/50">
-        <form @submit.prevent="createNewTasklist" class="max-w-80 bg-white/90 shadow-xl rounded-xl p-4 flex flex-col gap-2 w-5/6">
+    <div class="fixed inset-0 flex items-center backdrop-blur-sm justify-center z-10">
+        <form @submit.prevent="createNewTasklist" class="max-w-80 bg-white shadow-xl rounded-xl p-4 flex flex-col gap-2 w-5/6">
             <CustomInputText
                 v-model="label"
                 type="text"
@@ -47,7 +47,7 @@
                 v-model="description"
                 name="description"
                 id="description"
-                class="border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
+                class="min-h-35 border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
             </textarea>
             <div class="flex justify-around">
                 <DefaultButton

@@ -1,9 +1,9 @@
 <script setup>
-    import NewTasklist from '@/components/NewTasklist.vue';
+    import NewTasklist from '@/components/TasklistGeneral/NewTasklist.vue';
     import CustomHeader from '@/components/small/CustomHeader.vue';
     import TaskListSmall from '@/components/TasklistsSmall/TasklistSmall.vue';
     import TaskNavSmall from '@/components/TasklistsSmall/TaskNavSmall.vue';
-    import NewTasklistWindow from '@/components/NewTasklistWindow.vue'
+    import NewTasklistWindow from '@/components/TasklistGeneral/NewTasklistWindow.vue'
     import { ref } from 'vue';
 
     const showNewTaskWindow = ref(false);

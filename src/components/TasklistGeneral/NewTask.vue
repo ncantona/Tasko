@@ -1,5 +1,5 @@
 <script setup>
-    import NewTaskWindow from '@/components/NewTaskWindow.vue';
+    import NewTaskWindow from '@/components/TasklistGeneral/NewTaskWindow.vue';
     import DefaultButton from '@/components/small/DefaultButton.vue';
     import { ref } from 'vue';
 
@@ -20,7 +20,7 @@
             <img
                 src="@/images/Plus.svg"
                 alt="Plus svg"
-                class="w-6 h-6"
+                class="w-8 h-8"
             >
         </DefaultButton>
         <NewTaskWindow

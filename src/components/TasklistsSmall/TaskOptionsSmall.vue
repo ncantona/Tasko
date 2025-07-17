@@ -1,6 +1,8 @@
 <script setup>
     import DefaultButton from '@/components/small/DefaultButton.vue';
+    import { useTaskListStore } from '@/stores/useTaskListStore';
 
+    const tasklistStore = useTaskListStore();
     const resetFilter = () => {
 
     }

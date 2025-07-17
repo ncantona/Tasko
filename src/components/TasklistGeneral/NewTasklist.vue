@@ -13,7 +13,7 @@
         <DefaultButton 
             @click="toggleNewTasklistWindow"
             class="bg-white/50 shadow-xl rounded-xl p-4 h-full">
-            <img src="@/images/Plus.svg" alt="Plus svg" class="w-8">
+            <img src="@/images/Plus.svg" alt="Plus svg" class="w-12">
         </DefaultButton>
         <NewTasklistWindow v-if="showNewTasklistWindow" @close="toggleNewTasklistWindow"></NewTasklistWindow>
     </div>

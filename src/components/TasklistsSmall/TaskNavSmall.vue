@@ -2,7 +2,7 @@
     import { ref } from 'vue';
     import DefaultButton from '@/components/small/DefaultButton.vue';
     import TaskOptionsSmall from '@/components/TasklistsSmall/TaskOptionsSmall.vue';
-    import NewTasklist from '../NewTasklist.vue';
+    import NewTasklist from '../TasklistGeneral/NewTasklist.vue';
 
     const showOptions = ref(false);
     const toggleOptionWindow = () => showOptions.value = !showOptions.value;
@@ -16,6 +16,6 @@
             <img src="@/images/Arrow.svg" alt="Arrow svg">
         </DefaultButton>
         <NewTasklist class="max-h-full"/>
-        <TaskOptionsSmall v-show="showOptions" class="absolute mt-15 w-5/6"/>
+        <TaskOptionsSmall v-show="showOptions" class="absolute mt-17 w-5/6"/>
     </div>
 </template>
