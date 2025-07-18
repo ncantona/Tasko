@@ -1,7 +1,7 @@
 <script setup>
-    import CustomHeader from '@/components/small/CustomHeader.vue';
-    import UpdateImage from '@/components/Profile/UpdateImage.vue';
+    import CustomHeader from '@/components/SmallComponents/CustomHeader.vue';
     import UpdateProfile from '@/components/Profile/UpdateProfile.vue';
+    import UpdateImage from '@/components/Profile/UpdateImage.vue';
 </script>
 
 <template>

@@ -1,17 +1,19 @@
 <script setup>
-    import CustomInputText from '@/components/small/CustomInputText.vue';
+    import CustomSubmitButton from '@/components/SmallComponents/CustomSubmitButton.vue';
+    import CustomInputField from '@/components/SmallComponents/CustomInputField.vue';
+    import CancelButton from '@/components/SmallComponents/CancelButton.vue';
     import { usePopupStore } from '@/stores/usePopupStore';
-    import CustomButtonSubmit from '@/components/small/CustomButtonSubmit.vue';
-    import axios from 'axios';
     import { useUserStore } from '@/stores/useUserStore';
     import { RouterLink } from 'vue-router';
     import { ref } from 'vue';
 
     const userStore = useUserStore();
+    const popupStore = usePopupStore();
+
     const username = ref(`${userStore.user.username}`);
     const firstName = ref(`${userStore.user.firstName}`);
     const lastName = ref(`${userStore.user.lastName}`);
-    const popupStore = usePopupStore();
+
 
     const handleSubmit = async () => {
         if (!username.value.length && !firstName.value.length && !lastName.value.length)
@@ -26,17 +28,19 @@
             await userStore.updateUser(userData);
             popupStore.success = 'Profile updated successfully'
         } catch (error) {
-            if (axios.isAxiosError(error))
-                popupStore.error = error.response?.data?.message || error.message;
+            if (error.response && error.response.data && error.response.data.message)
+                popupStore.error = String(error.response.data.message);
             else
-                popupStore.error = error;
+                popupStore.error = String(error.message);
         }
     }
 </script>
 
 <template>
-    <form @submit.prevent="handleSubmit" class="flex flex-col gap-5 bg-white/50 shadow-xl rounded-xl p-8">
-        <CustomInputText
+    <form
+        @submit.prevent="handleSubmit"
+        class="flex flex-col gap-5 bg-white/60 shadow-xl rounded-xl p-8">
+        <CustomInputField
             v-model="username"
             type="text"
             label="Username"
@@ -44,14 +48,14 @@
             :required="false"
         />
         <div class="flex flex-col md:flex-row gap-5">
-            <CustomInputText
+            <CustomInputField
                 v-model="firstName"
                 type="text"
                 label="First Name"
                 name="firstName"
                 :required="false"
             />
-            <CustomInputText
+            <CustomInputField
                 v-model="lastName"
                 type="text"
                 label="Last Name"
@@ -61,14 +65,13 @@
         </div>
         <div class="flex flex-row justify-center gap-5 items-center">
             <RouterLink to="profile"
-                type="button"
-                class="text-blue-600 hover:text-blue-500">
-                Cancel
+                type="button">
+                <CancelButton/>
             </RouterLink>
-            <CustomButtonSubmit
+            <CustomSubmitButton
                 @click="handleSubmit">
                 Save changes
-            </CustomButtonSubmit>
+            </CustomSubmitButton>
         </div>
     </form>
 </template>

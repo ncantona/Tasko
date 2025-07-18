@@ -11,21 +11,33 @@
                 to="profile"
                 @click="$emit('clickButton')"
                 class="hover:text-blue-600 flex items-center gap-1">
-                <img src="@/images/ProfileIcon.svg" alt="Profile Icon" class="w-8 h-6">
+                <img
+                    src="@/assets/images/ProfileIcon.svg"
+                    alt="Profile Icon"
+                    class="w-8 h-6"
+                >
                 <span>Profile</span>
             </RouterLink>
             <RouterLink
                 to="account"
                 @click="$emit('clickButton')"
                 class="hover:text-blue-600 flex items-center gap-1">
-                <img src="@/images/Options.svg" alt="Options Icon" class="w-8 h-6">
+                <img
+                    src="@/assets/images/Options.svg"
+                    alt="Options Icon"
+                    class="w-8 h-6"
+                >
                 <span>Account</span>
             </RouterLink>
             <RouterLink
                 to="help"
                 @click="$emit('clickButton')"
                 class="hover:text-blue-600 flex items-center gap-1">
-                <img src="@/images/HelpIcon.svg" alt="Help Icon" class="w-8 h-6">
+                <img
+                    src="@/assets/images/HelpIcon.svg"
+                    alt="Help Icon"
+                    class="w-8 h-6"
+                >
                 <span>Help</span>
             </RouterLink>
             <RouterLink

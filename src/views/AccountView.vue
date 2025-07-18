@@ -1,22 +1,23 @@
 <script setup>
-    import ChangeEmail from '@/components/Account/ChangeEmail.vue';
+    import DefaultButton from '@/components/SmallComponents/DefaultButton.vue';
+    import CustomHeader from '@/components/SmallComponents/CustomHeader.vue';
+    import DeleteButton from '@/components/SmallComponents/DeleteButton.vue';
+    import DeleteWindow from '@/components/Account/AccountDeleteWindow.vue';
     import ChangePassword from '@/components/Account/ChangePassword.vue';
-    import DeleteWindow from '@/components/Account/DeleteWindow.vue';
-    import CustomHeader from '@/components/small/CustomHeader.vue';
-    import DefaultButton from '@/components/small/DefaultButton.vue';
-    import router from '@/router';
+    import ChangeEmail from '@/components/Account/ChangeEmail.vue';
     import { useUserStore } from '@/stores/useUserStore';
+    import router from '@/router';
     import { ref } from 'vue';
-    
+
     const activeSection = ref('password');
     const showDelete = ref(false);
-    const user = useUserStore();
+
+    const userStore = useUserStore();
 
     const deleteAccount = async () => {
-        await user.deleteAccount();
+        await userStore.deleteAccount();
         router.go('login');
     }
-
 </script>
 
 <template>
@@ -38,12 +39,16 @@
             <ChangePassword v-if="activeSection === 'password'"/>
             <ChangeEmail v-if="activeSection === 'email'"/>
             <div class="self-center">
-                <DefaultButton @click="showDelete = true"
-                    class="text-red-600 hover:text-red-400">
+                <DeleteButton
+                    @click="showDelete = true">
                     Delete Account
-                </DefaultButton>
+                </DeleteButton>
             </div>
         </div>
-        <DeleteWindow v-if="showDelete" @cancel="showDelete = false" @delete="deleteAccount"></DeleteWindow>
+        <DeleteWindow
+            v-if="showDelete"
+            @cancel="showDelete = false"
+            @delete="deleteAccount">
+        </DeleteWindow>
     </div>
 </template>

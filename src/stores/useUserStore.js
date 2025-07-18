@@ -19,14 +19,17 @@ export const useUserStore = defineStore('user', {
             await this.isInitialized;
             this.isInitialized = true;
         },
+        async register(userData) {
+            await axios.post(`${URL}/auth/register`, userData)
+        },
         async loadUser() {
             if (!localStorage.getItem('jwt'))
                 return;
-            const { data } = await axios.get(`${URL}/api/auth`);
+            const { data } = await axios.get(`${URL}/auth`);
             this.applyAuthentication(data);
         },
         async login(body) {
-            const { data } = await axios.post(`${URL}/api/auth/login`, body);
+            const { data } = await axios.post(`${URL}/auth/login`, body);
             this.applyAuthentication(data);
         },
         logout() {
@@ -38,14 +41,14 @@ export const useUserStore = defineStore('user', {
             localStorage.setItem('jwt', `Bearer ${token}`);
         },
         async updateUser(body) {
-            const { data } = await axios.put(`${URL}/api/user`, body);
+            const { data } = await axios.put(`${URL}/user`, body);
             this.user = data;
         },
         async changeUserPassword(newPassword) {
-            await axios.post(`${URL}/api/user/password`, {password: newPassword});
+            await axios.post(`${URL}/user/password`, {password: newPassword});
         },
         async deleteAccount() {
-            await axios.delete(`${URL}/api/user`);
+            await axios.delete(`${URL}/user`);
             localStorage.removeItem('jwt');
         }
     }

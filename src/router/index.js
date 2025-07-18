@@ -1,6 +1,6 @@
-import { useUserStore } from '@/stores/useUserStore'
 import { useTaskListStore } from '@/stores/useTaskListStore'
 import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/stores/useUserStore'
 
 const router = createRouter({
    history: createWebHistory(import.meta.env.BASE_URL),

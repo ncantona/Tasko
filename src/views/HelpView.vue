@@ -1,6 +1,6 @@
 <script setup>
-    import BackToHome from '@/components/small/BackToHome.vue';
-    import CustomHeader from '@/components/small/CustomHeader.vue';
+    import BackToHomeButton from '@/components/SmallComponents/BackToHomeButton.vue';
+    import CustomHeader from '@/components/SmallComponents/CustomHeader.vue';
 </script>
 
 <template>
@@ -8,7 +8,7 @@
         <CustomHeader>Help</CustomHeader>
         <div class="flex flex-col items-center">
             <span class="text-2xl">We are currently working on it.</span>
-            <BackToHome/>
+            <BackToHomeButton/>
         </div>
     </div>
 </template>

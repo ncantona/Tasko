@@ -1,33 +1,33 @@
 <script setup>
-    import CustomInputText from '@/components/small/CustomInputText.vue';
-    import CustomButtonSubmit from '@/components/small/CustomButtonSubmit.vue';
-    import PopupWindow from '@/components/General/PopupWindow.vue';
-    import axios from 'axios';
+    import CustomSubmitButton from '@/components/SmallComponents/CustomSubmitButton.vue';
+    import CustomInputField from '@/components/SmallComponents/CustomInputField.vue';
+    import { usePopupStore } from '@/stores/usePopupStore';
     import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
 
     const email = ref('');
     const password = ref('');
-    const user = useUserStore();
-    const showSuccess = ref(false);
-    const showError = ref('');
+
+    const userStore = useUserStore();
+    const popupStore = usePopupStore();
 
     const handleSubmit = async () => {
         try {
-            await user.login({email: user.user.email, password: password.value}).catch(() => {throw ('Wrong Password')});
+            await userStore.login({email: userStore.user.email, password: password.value})
+                .catch(() => {throw Error('Wrong Password')});
             const userData = {
-                username: user.user.username,
-                firstName: user.user.firstName,
-                lastName: user.user.lastName,
+                username: userStore.user.username,
+                firstName: userStore.user.firstName,
+                lastName: userStore.user.lastName,
                 email: email.value
             };
-            await user.updateUser(userData);
-            showSuccess.value = true;
+            await userStore.updateUser(userData);
+            popupStore.success = 'Your email has been updated successfully'
         } catch (error) {
-            if (axios.isAxiosError(error))
-                showError.value = error.response?.data?.message || error.message;
+            if (error.response && error.response.data && error.response.data.message)
+                popupStore.error = String(error.response.data.message);
             else
-                showError.value = error;
+                popupStore.error = String(error.message);
         }
         email.value = '';
         password.value = '';
@@ -35,38 +35,26 @@
 </script>
 
 <template>
-    <div class="bg-white/50 shadow-xl rounded-xl p-8">
-        <div class="flex flex-col md:flex-row justify-center gap-10">
-            <form @submit.prevent="handleSubmit" class="flex flex-col justify-center items-center gap-5">
-                <span><b>Registered Email:</b> {{ user.user.email }}</span>
+        <div class="flex flex-col md:flex-row justify-center gap-10 bg-white/60 shadow-xl rounded-xl p-8">
+            <form
+                @submit.prevent="handleSubmit"
+                class="flex flex-col justify-center items-center gap-5">
+                <span><b>Registered Email:</b> {{ userStore.user.email }}</span>
                 <div class="flex flex-col md:flex-row gap-5 w-full">
-                    <CustomInputText
+                    <CustomInputField
                         v-model="email"
                         type="email"
                         label="New Email*"
                         name="newEmail"
                     />
-                    <CustomInputText
+                    <CustomInputField
                         v-model="password"
                         type="password"
                         label="Confirm Your Password*"
                         name="password"
                     />
                 </div>
-                <CustomButtonSubmit>Change Email</CustomButtonSubmit>
+                <CustomSubmitButton>Change Email</CustomSubmitButton>
             </form>
         </div>
-        <PopupWindow
-            v-if="showSuccess"
-            @close="showSuccess = false"
-            type="success">
-            Email change successful
-        </PopupWindow>
-        <PopupWindow
-            v-if="showError"
-            @close="showError = ''"
-            type="error">
-            {{ showError }}
-        </PopupWindow>
-    </div>
 </template>
