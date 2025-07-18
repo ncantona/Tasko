@@ -52,9 +52,16 @@
                 :class="isOpen(tasklist.id) ? 'border-b-0 rounded-t-xl' : 'rounded-xl'"
                 class="bg-white/90 w-full shadow-xl border-2 p-4 flex justify-between">
                 <span class="font-bold">{{ tasklist.label }}</span>
-                <svg class="w-6 h-6" :style="[`color: ${getColor(tasklist.id)}`]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <div class="flex gap-2">
+                    <div class="flex gap-1">
+                        <span class="bg-green-100 border-green-400 text-green-700 rounded-full px-2 hover:bg-green-200">{{ (tasklist.tasks.filter(task => task.status === 'TODO')).length }}</span>
+                        <span class="bg-orange-100 border-orange-400 text-orange-700 rounded-full px-2 hover:bg-orange-200">{{ (tasklist.tasks.filter(task => task.status === 'IN_PROGRESS')).length }}</span>
+                        <span class="bg-gray-100 border-gray-400 text-gray-700 rounded-full px-2 hover:bg-gray-200">{{ (tasklist.tasks.filter(task => task.status === 'DONE')).length }}</span>
+                    </div>
+                    <svg class="w-6 h-6" :style="[`color: ${getColor(tasklist.id)}`]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
             </DefaultButton>
             <TaskListBodySmall
                 :tasklist="tasklist"
