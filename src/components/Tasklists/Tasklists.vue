@@ -4,9 +4,13 @@
     import NewTasklist from '../TasklistGeneral/NewTasklist.vue';
     import { useTaskListStore } from '@/stores/useTaskListStore';
     import TasklistStatistics from './TasklistStatistics.vue';
+    import SharedOwner from '@/assets/images/SharedOwner.svg'
+    import { useUserStore } from '@/stores/useUserStore';
+    import Shared from '@/assets/images/Shared.svg'
     import { ref } from 'vue';
 
     const tasklistStore = useTaskListStore();
+    const userStore = useUserStore();
 
     const openStates = ref({});
     const isOpen = (id) => !!openStates.value[id];
@@ -73,8 +77,14 @@
                     :style="[`border-color: ${getColor(tasklist.id)}`,
                     `background: linear-gradient(to right, ${lightenColor(getColor(tasklist.id), 0.3)} ${getProgress(tasklist)}%, rgba(255, 255, 255, 0.8) ${getProgress(tasklist)}%)`]"
                     :class="isOpen(tasklist.id) ? 'border-b-0 rounded-t-xl' : 'rounded-xl'"
-                    class="bg-white/90 w-full shadow-xl border-2 p-4 flex justify-between">
+                    class="bg-white/90 w-full relative shadow-xl border-2 p-4 flex justify-between">
                     <span class="font-bold">{{ tasklist.label }}</span>
+                    <img
+                        :src="tasklist.userId === userStore.user.id ? SharedOwner : Shared"
+                        alt="Shared svg"
+                        v-if="tasklist.sharedTasklists.length > 1"
+                        class="absolute -left-1 -top-1 rotate-45"
+                    >
                     <div class="flex gap-2 items-center">
                         <div class="flex gap-1 items-center">
                             <span

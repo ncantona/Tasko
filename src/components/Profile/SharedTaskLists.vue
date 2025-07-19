@@ -1,16 +1,17 @@
 <script setup>
-    import { ref } from 'vue';
+    import { useTaskListStore } from '@/stores/useTaskListStore';
 
-    const sharedTaskLists = ref([]);
+    const tasklistStore = useTaskListStore();
+    const sharedTasklists = tasklistStore.tasklists.filter(tasklist => tasklist.sharedTasklists.length > 1);
 </script>
 
 <template>
     <div class="flex flex-col gap-2 bg-white/50 shadow-xl rounded-xl p-8">
         <span class="font-bold">Shared Tasklists:</span>
-        <span v-show="!sharedTaskLists.length">Empty.</span>
-        <ul v-show="sharedTaskLists.length">
-            <li v-for="task in sharedTaskLists">
-                currentThingi
+        <span v-show="!sharedTasklists.length">Empty.</span>
+        <ul v-show="sharedTasklists.length">
+            <li v-for="(tasklist, index) of sharedTasklists">
+                {{ index + 1 }}. {{ tasklist.label }}
             </li>
         </ul>
     </div>

@@ -18,12 +18,12 @@
                     alt="Profile Picture"
                     class="w-5/6 rounded-full max-w-40 min-w-30"
                 >
-                <span class="font-bold text-xl">@{{ user.username }}</span>
+                <span class="font-bold text-xl">@{{ user.username }} #{{ user.id }}</span>
                 <div class="flex flex-col">
                     <span>{{ user.firstName }}</span>
                     <span>{{ user.lastName }}</span>
                 </div>
-                <RouterLink to="editProfile" >
+                <RouterLink to="editProfile">
                     <CustomSubmitButton>Edit Profile</CustomSubmitButton>
                 </RouterLink>
             </div>

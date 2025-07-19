@@ -17,7 +17,17 @@ export const useTaskListStore = defineStore('tasklists', {
                     const { data } = await axios.get(`${URL}/tasklist/${tasklist.id}`);
                     this.tasklists.push(data);
                 } catch (error) {
-                    throw ('Could not load tasklists from user');
+                    throw Error('Could not load tasklists from user');
+                }
+            }
+            for (const tasklist of userStore.user.sharedTasklists) {
+                if (this.tasklists.some(t => t.id === tasklist.tasklistId))
+                    continue;
+                try {
+                    const { data } = await axios.get(`${URL}/tasklist/${tasklist.tasklistId}`);
+                    this.tasklists.push(data);
+                } catch (error) {
+                    throw Error('Could not load shared tasklists from user');
                 }
             }
         },
@@ -70,9 +80,25 @@ export const useTaskListStore = defineStore('tasklists', {
             }
         },
         async updateTask(taskData, task) {
-            const { data } = await axios.put(`${URL}/task/${task.id}`, taskData);
+            await axios.put(`${URL}/task/${task.id}`, taskData);
             task.title = taskData.title;
             task.description = taskData.description;
         },
+        async addUserToTasklist(tasklistId, userId) {
+            const { data } = await axios.post(`${URL}/tasklist/${tasklistId}/user/${userId}`);
+            const targetTasklist = this.tasklists.find(tl => tl.id === tasklistId);
+            targetTasklist.sharedTasklists = data.sharedWith.map(({ user, ...rest }) => rest);
+            console.log(data);
+        },
+        async removeUserFromTasklist(tasklistId, userId) {
+            await axios.delete(`${URL}/tasklist/${tasklistId}/user/${userId}`);
+            const targetTasklist = this.tasklists.find(tl => tl.id === tasklistId);
+            if (targetTasklist)
+                targetTasklist.sharedTasklists = targetTasklist.sharedTasklists.filter(tl => tl.userId != userId);
+        },
+        async removeSelfFromTasklist(tasklistId, userId) {
+            await axios.delete(`${URL}/tasklist/${tasklistId}/user/${userId}`);
+            this.tasklists = this.tasklists.filter(tl => tl.id != tasklistId);
+        }
     }
 })

@@ -6,6 +6,7 @@
     import NewTask from '@/components/TasklistGeneral/NewTask.vue';
     import { useTaskListStore } from '@/stores/useTaskListStore';
     import TaskEdit from '../TasklistGeneral/TaskEdit.vue';
+    import { useUserStore } from '@/stores/useUserStore';
     import { ref } from 'vue';
 
     const props = defineProps({
@@ -14,12 +15,21 @@
     });
     
     const tasklistStore = useTaskListStore();
+    const userStore = useUserStore();
 
     const showUpdateTasklist = ref(false);
     const toggleUpdateTasklist = () => showUpdateTasklist.value = !showUpdateTasklist.value;
 
     const showUpdateTask = ref(0);
     const toggleUpdateTask = (id) => showUpdateTask.value = id;
+
+    const removeUser = async () => {
+        try {
+            await tasklistStore.removeSelfFromTasklist(props.tasklist.id, userStore.user.id);
+        } catch (error) {
+            
+        }
+    }
 </script>
 
 <template>
@@ -35,12 +45,19 @@
             </div>
             <div class="flex justify-between">
                 <CustomSubmitButton
-                    @click="toggleUpdateTasklist">
+                    @click="toggleUpdateTasklist"
+                    v-if="tasklist.userId === userStore.user.id">
                     Edit Tasklist
                 </CustomSubmitButton>
                 <CustomSubmitButton
+                    v-if="tasklist.userId != userStore.user.id"
+                    @click="removeUser"
+                    class="bg-red-600 text-white font-semibold shadow-md transition-all duration-200 ease-in-out rounded-xl px-4 py-3 hover:bg-red-700 hover:shadow-lg active:scale-95">
+                    Remove me
+                </CustomSubmitButton>
+                <CustomSubmitButton
                     @click="tasklistStore.sortTasksByStatus(tasklist.id)"
-                    class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded">
+                    class=" bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded">
                     sortieren
                 </CustomSubmitButton>
             </div>

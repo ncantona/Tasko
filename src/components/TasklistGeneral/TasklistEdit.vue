@@ -18,6 +18,7 @@
 
     const label = ref(`${props.tasklist.label}`);
     const description = ref(`${props.tasklist.description}`);
+    const otherUser = ref('');
 
     const showDelete = ref(false);
 
@@ -31,7 +32,7 @@
             await tasklistStore.updateTasklist(tasklistData, props.tasklist.id);
             popupStore.success = 'Tasklist update successful'
         } catch (error) {
-            popupStore.error = 'Tasklist update failed'
+            popupStore.error = 'Failed to update tasklist';
         }
         emits('close');
     }
@@ -43,6 +44,32 @@
             popupStore.error = 'Failed to delete tasklist';
         }
         emits('close');
+    }
+
+    const addUser = async () => {
+        try {
+            tasklistStore.addUserToTasklist(props.tasklist.id, otherUser.value);
+            popupStore.success = 'Added user successfully'
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message)
+                popupStore.error = String(error.response.data.message);
+            else
+                popupStore.error = 'Failed to add user';
+        }
+        otherUser.value = '';
+    }
+
+    const removeUser = async () => {
+        try {
+            tasklistStore.removeUserFromTasklist(props.tasklist.id, otherUser.value);
+            popupStore.success = 'Removed user successfully'
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message)
+                popupStore.error = String(error.response.data.message);
+            else
+                popupStore.error = 'Failed to remove user';
+        }
+        otherUser.value = '';
     }
 </script>
 
@@ -76,6 +103,28 @@
                 id="description"
                 class="min-h-35 border-1 rounded-sm outline-none p-2 focus-within:border-2 focus-within:border-blue-500">
             </textarea>
+            <div class="flex flex-col gap-2">
+                <CustomInputField
+                    v-model="otherUser"
+                    type="text"
+                    label="User ID"
+                    id="otherUser">
+                </CustomInputField>
+                <div class="flex gap-4 justify-around">
+                    <CustomSubmitButton
+                        type="button"
+                        @click="addUser"
+                        class="w-full">
+                        Add
+                    </CustomSubmitButton>
+                    <DeleteButton
+                        type="button"
+                        @click="removeUser"
+                        class="w-full">
+                        Remove
+                    </DeleteButton>
+                </div>
+            </div>
             <div class="flex justify-around">
                 <CancelButton
                     type="button"
