@@ -7,8 +7,6 @@ A modern and intuitive task management application built with Vue.js, allowing u
 ### 🔐 User Authentication
 - Complete login/registration system
 - JWT token-based authentication
-- Secure password reset functionality
-- Email validation during registration
 
 ### 📝 Task Management
 - Create, edit, and delete tasks
@@ -232,19 +230,6 @@ The application uses Tailwind CSS with a custom design system:
 
 ## 🔧 Configuration
 
-### Vite Configuration
-```javascript
-// vite.config.js
-export default defineConfig({
-  plugins: [vue(), vueDevTools(), tailwindcss()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
-})
-```
-
 ### Router Configuration
 - **Protected Routes**: Authentication required for `/home`, `/profile`, `/account`
 - **Public Routes**: `/login`, `/register` for non-authenticated users
@@ -261,13 +246,6 @@ npm run build
 - **Static Hosting**: Netlify, Vercel, GitHub Pages
 - **CDN**: CloudFlare, AWS CloudFront
 - **Server**: Nginx, Apache
-
-### Environment Variables
-The application can be configured with different API endpoints:
-```javascript
-// src/API/Url.vue
-export const URL = process.env.VUE_APP_API_URL || 'https://task-list.codersbay.wien/api'
-```
 
 ## 🔒 Security
 
